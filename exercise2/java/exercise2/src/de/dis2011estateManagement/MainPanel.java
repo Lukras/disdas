@@ -19,7 +19,6 @@ public class MainPanel extends JPanel implements ActionListener {
 	public MainPanel(MainFrame mainFrame) {
 		super();
 		this.mainFrame = mainFrame;
-		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		btnEstateAgentMgmt = new JButton("Estate Agent Management");
@@ -31,7 +30,7 @@ public class MainPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEstateAgentMgmt) {
-			mainFrame.goToEstateAgentLoginPanel();
+			mainFrame.goToPanel(new EstateAgentLoginPanel(mainFrame));
 		}
 	}
 }

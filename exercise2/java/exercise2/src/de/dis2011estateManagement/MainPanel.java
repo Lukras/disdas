@@ -41,6 +41,8 @@ public class MainPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttons[0]) {
 			mainFrame.goToPanel(new EstateAgentLoginPanel(mainFrame));
+		} else if (e.getSource() == buttons[1]) {
+			mainFrame.goToPanel(new EstateLoginPanel(mainFrame));
 		}
 	}
 }

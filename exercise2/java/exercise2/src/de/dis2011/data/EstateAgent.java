@@ -139,6 +139,31 @@ public class EstateAgent {
 		}
 		return null;
 	}
+	
+	public static String loadPasswordOfLogin(String login) {
+		try {
+			// Hole Verbindung
+			Connection con = DB2ConnectionManager.getInstance().getConnection();
+
+			// Erzeuge Anfrage
+			String selectSQL = "SELECT password FROM estateAgent WHERE login = ?";
+			PreparedStatement pstmt = con.prepareStatement(selectSQL);
+			pstmt.setString(1, login);
+
+			// Führe Anfrage aus
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				String password = rs.getString("password");
+				
+				rs.close();
+				pstmt.close();
+				return password;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void save() {
 		// Hole Verbindung

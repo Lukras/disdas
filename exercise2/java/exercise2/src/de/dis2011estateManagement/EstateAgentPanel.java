@@ -23,12 +23,22 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 
 	private static final long serialVersionUID = 9036863228877036537L;
 
-	private static final String[] COLUMNS = { "id", "name", "address", "login",
-			"password" };
+	private static final String[] COLUMNS = {
+		"id",
+		"name",
+		"address",
+		"login",
+		"password" };
+	
+	private static final String[] ITEMS = {
+		"create",
+		"update",
+		"delete",
+		"back"};
 
 	private JTable table;
 	private JTextField[] txtFldEdit;
-	private JButton btnCreate, btnUpdate, btnDelete, btnBack;
+	private JButton[] buttons;
 
 	private MainFrame mainFrame;
 
@@ -49,7 +59,7 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 			int labelWidth = 80;
 			label.setMinimumSize(new Dimension(labelWidth,0));
 			label.setPreferredSize(new Dimension(labelWidth,label.getPreferredSize().height));
-			label.setMaximumSize(new Dimension(labelWidth, Integer.MAX_VALUE));
+			label.setMaximumSize(new Dimension(labelWidth, label.getPreferredSize().height));
 			panel.add(label);
 			JTextField textfield = new JTextField();
 			textfield.setMaximumSize(new Dimension(Integer.MAX_VALUE, textfield.getPreferredSize().height));
@@ -62,35 +72,30 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 		// create button panel
 		JPanel pnlButtons = new JPanel();
 		pnlButtons.setLayout(new BoxLayout(pnlButtons, BoxLayout.X_AXIS));
-		btnCreate = new JButton("create");
-		btnCreate.addActionListener(this);
-		pnlButtons.add(btnCreate);
-		btnUpdate = new JButton("update");
-		btnUpdate.addActionListener(this);
-		pnlButtons.add(btnUpdate);
-		btnDelete = new JButton("delete");
-		btnDelete.addActionListener(this);
-		pnlButtons.add(btnDelete);
-		btnBack = new JButton("back");
-		btnBack.addActionListener(this);
-		pnlButtons.add(btnBack);
+		buttons = new JButton[ITEMS.length];
+		for (int i = 0; i < ITEMS.length; i++) {
+			JButton button = new JButton(ITEMS[i]);
+			button.addActionListener(this);
+			pnlButtons.add(button);
+			buttons[i] = button;
+		}
 		this.add(pnlButtons);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnCreate) {
+		if (e.getSource() == buttons[0]) {
 			EstateAgent agent = getAgentOfInputFields();
 			agent.setId(-1); // set id to -1 to insert a new entry
 			agent.save();
 			refreshTable();
-		} else if (e.getSource() == btnUpdate) {
+		} else if (e.getSource() == buttons[1]) {
 			getAgentOfInputFields().save();
 			refreshTable();
-		} else if (e.getSource() == btnDelete) {
+		} else if (e.getSource() == buttons[2]) {
 			getAgentOfInputFields().delete();
 			refreshTable();
-		} else if (e.getSource() == btnBack) {
+		} else if (e.getSource() == buttons[3]) {
 			mainFrame.goToPanel(new MainPanel(mainFrame));
 		}
 	}

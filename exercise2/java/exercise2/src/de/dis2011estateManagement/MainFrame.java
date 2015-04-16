@@ -1,5 +1,6 @@
 package de.dis2011estateManagement;
 
+import java.awt.Dimension;
 import java.awt.HeadlessException;
 
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ public class MainFrame extends JFrame {
 		this.add(new MainPanel(this));
 
 		this.setSize(640, 480);
+		this.setMinimumSize(new Dimension(640,480));
 		this.setLocationByPlatform(true);
 		this.setVisible(true);
 	}

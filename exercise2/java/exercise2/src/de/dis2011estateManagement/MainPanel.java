@@ -12,7 +12,12 @@ public class MainPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -7091238205226400082L;
 	
-	private JButton btnEstateAgentMgmt;
+	private static final String[] ITEMS = {
+		"Estate Agent Management",
+		"Estate Management",
+		"Contract Management" };
+	
+	private JButton[] buttons;
 	
 	private MainFrame mainFrame;
 	
@@ -20,16 +25,21 @@ public class MainPanel extends JPanel implements ActionListener {
 		super();
 		this.mainFrame = mainFrame;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-		btnEstateAgentMgmt = new JButton("Estate Agent Management");
-		btnEstateAgentMgmt.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btnEstateAgentMgmt.addActionListener(this);
-		this.add(btnEstateAgentMgmt);
+		
+		// create menu items
+		buttons = new JButton[ITEMS.length];
+		for (int i = 0; i < ITEMS.length; i++) {
+			JButton btn = new JButton(ITEMS[i]);
+			btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+			btn.addActionListener(this);
+			this.add(btn);
+			buttons[i] = btn;
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnEstateAgentMgmt) {
+		if (e.getSource() == buttons[0]) {
 			mainFrame.goToPanel(new EstateAgentLoginPanel(mainFrame));
 		}
 	}

@@ -188,4 +188,23 @@ public class EstateAgent {
 			e.printStackTrace();
 		}
 	}
+	
+	public void delete() {
+		try {
+			// Hole Verbindung
+			Connection con = DB2ConnectionManager.getInstance().getConnection();
+
+			// Erzeuge Anfrage
+			String selectSQL = "DELETE FROM estateAgent WHERE id = ?";
+			PreparedStatement pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, id);
+
+			// Führe Aktualisierung aus
+			if (pstmt.execute()) {
+				pstmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

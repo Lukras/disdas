@@ -70,7 +70,7 @@ public class EstateLoginPanel extends JPanel implements ActionListener {
 			String strPassword = String.valueOf(password.getPassword());
 			String dbPassword = EstateAgent.loadPasswordOfLogin(strLogin);
 			if ((dbPassword != null) && (dbPassword.equals(strPassword))) {
-				mainFrame.goToPanel(new EstatePanel(mainFrame)); 
+				mainFrame.goToPanel(new EstateMenuPanel(mainFrame)); 
 			}
 		} else if (e.getSource() == btnBack) {
 			mainFrame.goToPanel(new MainPanel(mainFrame));

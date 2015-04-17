@@ -8,24 +8,22 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class MainPanel extends JPanel implements ActionListener {
+public class ContractMenuPanel extends JPanel implements ActionListener {
 
-	private static final long serialVersionUID = -7091238205226400082L;
-	
-	private static final String[] ITEMS = {
-		"Estate Agent Management",
-		"Estate Management",
-		"Contract Management" };
-	
+	private static final long serialVersionUID = 1324610803192535700L;
+
+	private static final String[] ITEMS = { "Tenancy Contract Management",
+			"Purchase Contract Management", "Person Management", "back" };
+
 	private JButton[] buttons;
-	
+
 	private MainFrame mainFrame;
-	
-	public MainPanel(MainFrame mainFrame) {
+
+	public ContractMenuPanel(MainFrame mainFrame) {
 		super();
 		this.mainFrame = mainFrame;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
+
 		// create menu items
 		buttons = new JButton[ITEMS.length];
 		for (int i = 0; i < ITEMS.length; i++) {
@@ -40,11 +38,14 @@ public class MainPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttons[0]) {
-			mainFrame.goToPanel(new EstateAgentLoginPanel(mainFrame));
+			mainFrame.goToPanel(new TenancyContractPanel(mainFrame));
 		} else if (e.getSource() == buttons[1]) {
-			mainFrame.goToPanel(new EstateLoginPanel(mainFrame));
+			mainFrame.goToPanel(new PurchaseContractPanel(mainFrame));
 		} else if (e.getSource() == buttons[2]) {
-			mainFrame.goToPanel(new ContractMenuPanel(mainFrame));
+			mainFrame.goToPanel(new PersonPanel(mainFrame));
+		} else if (e.getSource() == buttons[3]) {
+			mainFrame.goToPanel(new MainPanel(mainFrame));
 		}
 	}
+
 }

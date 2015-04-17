@@ -17,24 +17,18 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import de.dis2011.data.EstateAgent;
+import de.dis2011.data.Person;
 
-public class EstateAgentPanel extends JPanel implements ActionListener,
+public class PersonPanel extends JPanel implements ActionListener,
 		ListSelectionListener {
 
-	private static final long serialVersionUID = 9036863228877036537L;
+	private static final long serialVersionUID = 7182775334944052032L;
 
-	private static final String[] COLUMNS = {
-		"id",
-		"name",
-		"address",
-		"login",
-		"password" };
-	
-	private static final String[] ITEMS = {
-		"create",
-		"update",
-		"delete",
-		"back"};
+	private static final String[] COLUMNS = { "id", "firstName", "name",
+			"address" };
+
+	private static final String[] ITEMS = { "create", "update", "delete",
+			"back" };
 
 	private JTable table;
 	private JTextField[] txtFldEdit;
@@ -42,7 +36,7 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 
 	private MainFrame mainFrame;
 
-	public EstateAgentPanel(MainFrame mainFrame) {
+	public PersonPanel(MainFrame mainFrame) {
 		super();
 		this.mainFrame = mainFrame;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -57,12 +51,15 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 			JLabel label = new JLabel(COLUMNS[i]);
 			int labelWidth = 80;
-			label.setMinimumSize(new Dimension(labelWidth,0));
-			label.setPreferredSize(new Dimension(labelWidth,label.getPreferredSize().height));
-			label.setMaximumSize(new Dimension(labelWidth, label.getPreferredSize().height));
+			label.setMinimumSize(new Dimension(labelWidth, 0));
+			label.setPreferredSize(new Dimension(labelWidth, label
+					.getPreferredSize().height));
+			label.setMaximumSize(new Dimension(labelWidth, label
+					.getPreferredSize().height));
 			panel.add(label);
 			JTextField textfield = new JTextField();
-			textfield.setMaximumSize(new Dimension(Integer.MAX_VALUE, textfield.getPreferredSize().height));
+			textfield.setMaximumSize(new Dimension(Integer.MAX_VALUE, textfield
+					.getPreferredSize().height));
 			txtFldEdit[i] = textfield;
 			panel.add(textfield);
 			this.add(panel);
@@ -85,15 +82,15 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttons[0]) {
-			EstateAgent agent = getAgentOfInputFields();
-			agent.setId(-1); // set id to -1 to insert a new entry
-			agent.save();
+			Person person = getPersonOfInputFields();
+			person.setId(-1); // set id to -1 to insert a new entry
+			person.save();
 			refreshTable();
 		} else if (e.getSource() == buttons[1]) {
-			getAgentOfInputFields().save();
+			getPersonOfInputFields().save();
 			refreshTable();
 		} else if (e.getSource() == buttons[2]) {
-			getAgentOfInputFields().delete();
+			getPersonOfInputFields().delete();
 			refreshTable();
 		} else if (e.getSource() == buttons[3]) {
 			mainFrame.goToPanel(new MainPanel(mainFrame));
@@ -108,7 +105,7 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		pnlTable.add(scroll);
 		this.add(pnlTable);
-		
+
 		table.getSelectionModel().addListSelectionListener(this);
 		refreshTable();
 	}
@@ -117,25 +114,24 @@ public class EstateAgentPanel extends JPanel implements ActionListener,
 		DefaultTableModel dtm = new DefaultTableModel();
 		dtm.setColumnIdentifiers(COLUMNS);
 		table.setModel(dtm);
-		List<EstateAgent> agents = EstateAgent.loadAll();
-		for (EstateAgent agent : agents) {
-			dtm.addRow(new Object[] { agent.getId(), agent.getName(),
-					agent.getAddress(), agent.getLogin(), agent.getPassword() });
+		List<Person> persons = Person.loadAll();
+		for (Person person : persons) {
+			dtm.addRow(new Object[] { person.getId(), person.getFirstName(),
+					person.getName(), person.getAddress() });
 		}
 	}
 	
-	private EstateAgent getAgentOfInputFields() {
-		EstateAgent agent = new EstateAgent();
-		agent.setId(Integer.parseInt(txtFldEdit[0].getText()));
-		agent.setName(txtFldEdit[1].getText());
-		agent.setAddress(txtFldEdit[2].getText());
-		agent.setLogin(txtFldEdit[3].getText());
-		agent.setPassword(txtFldEdit[4].getText());
-		return agent;
+	private Person getPersonOfInputFields() {
+		Person person = new Person();
+		person.setId(Integer.parseInt(txtFldEdit[0].getText()));
+		person.setFirstName(txtFldEdit[1].getText());
+		person.setName(txtFldEdit[2].getText());
+		person.setAddress(txtFldEdit[3].getText());
+		return person;
 	}
 
 	@Override
-	public void valueChanged(ListSelectionEvent arg0) {
+	public void valueChanged(ListSelectionEvent e) {
 		if (table.getSelectedRow() > -1) {
 			for (int i = 0; i < COLUMNS.length; i++) {
 				txtFldEdit[i].setText(table.getValueAt(table.getSelectedRow(),

@@ -156,7 +156,7 @@ public class ImmoService {
 	 */
 	public Set<Haus> getAllHaeuserForMakler(Makler m) {
 		Set<Haus> ret = new HashSet<Haus>();
-		Iterator<Haus> it = getAllFromDB(Haus.class, "from Haus").iterator();
+		Iterator<Haus> it = getAllFromDB(Haus.class, "from Haus h left join fetch h.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Haus h = it.next();
@@ -174,7 +174,7 @@ public class ImmoService {
 	 * @return Das Haus oder null, falls nicht gefunden
 	 */
 	public Haus getHausById(int id) {
-		Iterator<Haus> it = getAllFromDB(Haus.class, "from Haus").iterator();
+		Iterator<Haus> it = getAllFromDB(Haus.class, "from Haus h left join fetch h.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Haus h = it.next();
@@ -209,7 +209,7 @@ public class ImmoService {
 	 */
 	public Set<Wohnung> getAllWohnungenForMakler(Makler m) {
 		Set<Wohnung> ret = new HashSet<Wohnung>();
-		Iterator<Wohnung> it = getAllFromDB(Wohnung.class, "from Wohnung").iterator();
+		Iterator<Wohnung> it = getAllFromDB(Wohnung.class, "from Wohnung w left join fetch w.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Wohnung w = it.next();
@@ -227,7 +227,7 @@ public class ImmoService {
 	 * @return Die Wohnung oder null, falls nicht gefunden
 	 */
 	public Wohnung getWohnungById(int id) {
-		Iterator<Wohnung> it = getAllFromDB(Wohnung.class, "from Wohnung").iterator();
+		Iterator<Wohnung> it = getAllFromDB(Wohnung.class, "from Wohnung w left join fetch w.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Wohnung w = it.next();
@@ -271,7 +271,7 @@ public class ImmoService {
 	 */
 	public Set<Mietvertrag> getAllMietvertraegeForMakler(Makler m) {
 		Set<Mietvertrag> ret = new HashSet<Mietvertrag>();
-		Iterator<Mietvertrag> it = getAllFromDB(Mietvertrag.class,"from Mietvertrag").iterator();
+		Iterator<Mietvertrag> it = getAllFromDB(Mietvertrag.class,"from Mietvertrag mv inner join fetch mv.vertragspartner left join fetch mv.wohnung w left join fetch w.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Mietvertrag v = it.next();
@@ -290,7 +290,7 @@ public class ImmoService {
 	 */
 	public Set<Kaufvertrag> getAllKaufvertraegeForMakler(Makler m) {
 		Set<Kaufvertrag> ret = new HashSet<Kaufvertrag>();
-		Iterator<Kaufvertrag> it = getAllFromDB(Kaufvertrag.class,"from Kaufvertrag").iterator();
+		Iterator<Kaufvertrag> it = getAllFromDB(Kaufvertrag.class,"from Kaufvertrag kv inner join fetch kv.vertragspartner left join fetch kv.haus h left join fetch h.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Kaufvertrag k = it.next();
@@ -308,7 +308,7 @@ public class ImmoService {
 	 * @return Der Mietvertrag oder null, falls nicht gefunden
 	 */
 	public Mietvertrag getMietvertragById(int id) {
-		Iterator<Mietvertrag> it = getAllFromDB(Mietvertrag.class,"from Mietvertrag").iterator();
+		Iterator<Mietvertrag> it = getAllFromDB(Mietvertrag.class,"from Mietvertrag mv inner join fetch mv.vertragspartner left join fetch mv.wohnung w left join fetch w.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Mietvertrag m = it.next();
@@ -327,7 +327,7 @@ public class ImmoService {
 	 */
 	public Set<Mietvertrag> getMietvertragByVerwalter(Makler m) {
 		Set<Mietvertrag> ret = new HashSet<Mietvertrag>();
-		Iterator<Mietvertrag> it = getAllFromDB(Mietvertrag.class,"from Mietvertrag").iterator();
+		Iterator<Mietvertrag> it = getAllFromDB(Mietvertrag.class,"from Mietvertrag mv inner join fetch mv.vertragspartner left join fetch mv.wohnung w left join fetch w.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Mietvertrag mv = it.next();
@@ -346,7 +346,7 @@ public class ImmoService {
 	 */
 	public Set<Kaufvertrag> getKaufvertragByVerwalter(Makler m) {
 		Set<Kaufvertrag> ret = new HashSet<Kaufvertrag>();
-		Iterator<Kaufvertrag> it = getAllFromDB(Kaufvertrag.class,"from Kaufvertrag").iterator();
+		Iterator<Kaufvertrag> it = getAllFromDB(Kaufvertrag.class,"from Kaufvertrag kv inner join fetch kv.vertragspartner left join fetch kv.haus h left join fetch h.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Kaufvertrag k = it.next();
@@ -364,7 +364,7 @@ public class ImmoService {
 	 * @return Der Kaufvertrag oder null, falls nicht gefunden
 	 */
 	public Kaufvertrag getKaufvertragById(int id) {
-		Iterator<Kaufvertrag> it = getAllFromDB(Kaufvertrag.class,"from Kaufvertrag").iterator();
+		Iterator<Kaufvertrag> it = getAllFromDB(Kaufvertrag.class,"from Kaufvertrag kv inner join fetch kv.vertragspartner left join fetch kv.haus h left join fetch h.verwalter").iterator();
 		
 		while(it.hasNext()) {
 			Kaufvertrag k = it.next();

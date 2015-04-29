@@ -11,7 +11,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import de.dis2013.data.Haus;
-import de.dis2013.data.Immobilie;
 import de.dis2013.data.Kaufvertrag;
 import de.dis2013.data.Makler;
 import de.dis2013.data.Mietvertrag;
@@ -20,20 +19,8 @@ import de.dis2013.data.Wohnung;
 
 /**
  * Klasse zur Verwaltung aller Datenbank-Entitäten.
- * 
- * TODO: Aktuell werden alle Daten im Speicher gehalten. Ziel der Übung
- * ist es, schrittweise die Datenverwaltung in die Datenbank auszulagern.
- * Wenn die Arbeit erledigt ist, werden alle Sets dieser Klasse überflüssig.
  */
 public class ImmoService {
-	//Datensätze im Speicher
-	//private Set<Makler> makler = new HashSet<Makler>();
-	//private Set<Person> personen = new HashSet<Person>();
-	//private Set<Haus> haeuser = new HashSet<Haus>();
-	//private Set<Wohnung> wohnungen = new HashSet<Wohnung>();
-	//private Set<Mietvertrag> mietvertraege = new HashSet<Mietvertrag>();
-	//private Set<Kaufvertrag> kaufvertraege = new HashSet<Kaufvertrag>();
-	
 	//Hibernate Session
 	private SessionFactory sessionFactory;
 	
@@ -518,7 +505,7 @@ public class ImmoService {
 	private void addToDB(Object o) {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		session.save(o);
+		session.saveOrUpdate(o);
 		session.getTransaction().commit();
 	}
 	

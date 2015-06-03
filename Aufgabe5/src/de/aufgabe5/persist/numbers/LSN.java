@@ -3,6 +3,11 @@ import java.io.Serializable;
 
 public class LSN implements Serializable, Comparable<LSN> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9104615454955671236L;
+
 	static private int lastID = 0;
 
 	private int ID;

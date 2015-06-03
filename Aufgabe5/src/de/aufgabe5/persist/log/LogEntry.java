@@ -7,8 +7,18 @@ import de.aufgabe5.persist.numbers.TransactionID;
 
 public abstract class LogEntry implements Serializable {
 
-	private LSN lsn;
-	private TransactionID taid;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6182098237368552605L;
+
+	@Override
+	public String toString() {
+		return "LogEntry [lsn=" + lsn + ", taid=" + taid + "]";
+	}
+
+	protected LSN lsn;
+	protected TransactionID taid;
 
 	public LogEntry(TransactionID taid) {
 		this.lsn = new LSN();

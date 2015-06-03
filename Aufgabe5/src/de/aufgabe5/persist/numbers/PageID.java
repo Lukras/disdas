@@ -5,6 +5,10 @@ public class PageID implements Serializable {
 
 //	static private int lastID = 0;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 408097673440193394L;
 	private int ID;
 
 	public PageID(int ID) {

@@ -10,7 +10,7 @@ import de.aufgabe5.client.CrashClient;
 import de.aufgabe5.persist.PersistenceManager;
 import de.aufgabe5.persist.recovery.RecoveryManager;
 
-public class StartUp {
+public class Main {
 
 	private static List<Client> clients = new ArrayList<Client>();
 

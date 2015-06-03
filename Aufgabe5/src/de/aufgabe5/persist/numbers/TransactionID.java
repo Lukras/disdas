@@ -3,6 +3,11 @@ import java.io.Serializable;
 
 public class TransactionID implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9062184777832784612L;
+
 	static private int lastID = 0;
 
 	private int ID;

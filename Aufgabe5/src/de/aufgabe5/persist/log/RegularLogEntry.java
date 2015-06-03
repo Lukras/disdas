@@ -7,6 +7,17 @@ import de.aufgabe5.persist.util.DBData;
 public class RegularLogEntry extends LogEntry {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1986191738169351120L;
+
+	@Override
+	public String toString() {
+		return "RegularLogEntry [lsn=" + lsn + ", taid=" + taid + ", paid="
+				+ paid + ", data=" + data + "]";
+	}
+
 	private PageID paid;
 	private DBData<?> data;
 

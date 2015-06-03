@@ -25,8 +25,8 @@ public class RecoveryManager {
 		try {
 			{
 				Map<TransactionID, Transaction> foundTA = new HashMap<TransactionID, Transaction>();
-				FileInputStream inputStream = new FileInputStream("log.res");
-				ObjectInputStream objectInput = new ObjectInputStream(inputStream);
+				//FileInputStream inputStream = new FileInputStream("log.res");
+				ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("log.res"));
 				try {
 					while (true) {
 						LogEntry log = (LogEntry) objectInput.readObject();
@@ -41,7 +41,7 @@ public class RecoveryManager {
 					}
 				} catch (EOFException e) {
 					LSN.setLastLSN(lastLSN);
-					inputStream.close();
+					objectInput.close();
 				}
 			}
 			// Winner sind identifiziert:

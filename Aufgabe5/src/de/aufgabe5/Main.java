@@ -42,13 +42,13 @@ public class Main {
 
 	private static void startClients() {
 
-		startClient(Arrays.asList(1, 2, 3, 4, 5, 6));
-		startClient(Arrays.asList(11, 12, 13, 14));
-		startClient(Arrays.asList(21, 22, 23, 24, 25, 26, 27));
-		startClient(Arrays.asList(31, 32, 33));
-		startCrashClient(Arrays.asList(41, 42, 43, 44, 45));
+		startClient(Arrays.asList(		 1,  2,  3,  4,  5,  6));
+		startClient(Arrays.asList(		11, 12, 13, 14));
+		startClient(Arrays.asList(		21, 22, 23, 24, 25, 26, 27));
+		startClient(Arrays.asList(		31, 32, 33));
+		startCrashClient(Arrays.asList(	41, 42, 43, 44, 45));
 		
-		System.out.print("[StartUp]Clients Startet!!!\n");
+		System.out.print("[Main]Clients Startet!!!\n");
 	}
 
 	private static void joinClients() {
@@ -59,17 +59,17 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
-		System.out.print("[startUp]Clients Joined!\n");
+		System.out.print("[Main]Clients Joined!\n");
 	}
 
 	private static void flush() {
 		PersistenceManager.INSTANCE.flush();
-		System.out.print("[startUp]Flushed!\n");
+		System.out.print("[Main]Flushed!\n");
 	}
 
 	private static void end() {
 		PersistenceManager.INSTANCE.end();
-		System.out.print("[startUp]Ended!\n");
+		System.out.print("[Main]Ended!\n");
 	}
 
 	/**

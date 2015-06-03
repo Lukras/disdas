@@ -10,8 +10,8 @@ public class ObjectInputReader {
 	public static void main(String[] args) {
 		ObjectInputStream in = null;
 		try {
-			//in = new ObjectInputStream(new FileInputStream("log.res"));
-			in = new ObjectInputStream(new FileInputStream("pages/44.res"));
+			in = new ObjectInputStream(new FileInputStream("log.res"));
+			//in = new ObjectInputStream(new FileInputStream("pages/44.res"));
 			
 			while (true) {
 				Object log = in.readObject();

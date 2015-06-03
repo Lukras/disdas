@@ -76,14 +76,14 @@ public class StartUp {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		prepareEnv();
+		prepareEnv(); // Ordner "pages" anlegen
 
-		doRecovery();
+		doRecovery(); // wenn "log.res" vorhanden, führe Recovery durch
 
-		startClients();
-		joinClients();
-		flush();
-		end();
+		startClients(); // starte Clients mit verschiedenen Page-IDs
+		joinClients(); // warte aufs Ende der Client-Threads
+		flush(); // leere den Buffer
+		end(); // schließe den Output-Stream
 	}
 
 }

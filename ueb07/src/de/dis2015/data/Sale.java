@@ -3,27 +3,28 @@ package de.dis2015.data;
 import java.sql.Date;
 
 public class Sale {
-	private Date datum;
-	private ShopID shop;
-	private ArticleID article;
+	private String datum;
+	private String shop;
+	private String article;
 	private int sold;
 	private double turnover;
-	public Date getDatum() {
+	
+	public String getDatum() {
 		return datum;
 	}
-	public void setDatum(Date datum) {
+	public void setDatum(String datum) {
 		this.datum = datum;
 	}
-	public ShopID getShop() {
+	public String getShop() {
 		return shop;
 	}
-	public void setShop(ShopID shop) {
+	public void setShop(String shop) {
 		this.shop = shop;
 	}
-	public ArticleID getArticle() {
+	public String getArticle() {
 		return article;
 	}
-	public void setArticle(ArticleID article) {
+	public void setArticle(String article) {
 		this.article = article;
 	}
 	public int getSold() {
@@ -38,7 +39,7 @@ public class Sale {
 	public void setTurnover(double turnover) {
 		this.turnover = turnover;
 	}
-	public Sale(Date datum, ShopID shop, ArticleID article, int sold,
+	public Sale(String datum, String shop, String article, int sold,
 			double turnover) {
 		super();
 		this.datum = datum;
